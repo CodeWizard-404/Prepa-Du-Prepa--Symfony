@@ -3,39 +3,43 @@
 {% block title %}Course index{% endblock %}
 
 {% block body %}
-    <h1>Course index</h1>
+<div class="container">
+    <h1 class="mt-4 mb-4 text-white">Course index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Level</th>
-                <th>Subject</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for course in courses %}
-            <tr>
-                <td>{{ course.id }}</td>
-                <td>{{ course.title }}</td>
-                <td>{{ course.description }}</td>
-                <td>{{ course.level }}</td>
-                <td>{{ course.subject }}</td>
-                <td>
-                    <a href="{{ path('app_course_show', {'id': course.id}) }}">show</a>
-                    <a href="{{ path('app_course_edit', {'id': course.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <a href="{{ path('app_course_new') }}" class="btn btn-primary mb-3">Create New</a>
 
-    <a href="{{ path('app_course_new') }}">Create new</a>
+    <div class="table-responsive">
+        <table class="table text-white table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Level</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for course in courses %}
+                <tr>
+                    <td>{{ course.id }}</td>
+                    <td>{{ course.title }}</td>
+                    <td>{{ course.description }}</td>
+                    <td>{{ course.level }}</td>
+                    <td>{{ course.subject }}</td>
+                    <td>
+                        <a href="{{ path('app_course_show', {'id': course.id}) }}" class="btn btn-sm btn-info">Show</a>
+                        <a href="{{ path('app_course_edit', {'id': course.id}) }}" class="btn btn-sm btn-secondary">Edit</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="6" class="text-center">No records found</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

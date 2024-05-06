@@ -1,4 +1,33 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<div class="container d-flex justify-content-center">
+    {{ form_start(form, {'attr': {'class': 'form'}}) }}
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form_row(form.title, {'attr': {'class': 'form-control', 'placeholder': 'Title', 'style': 'background-color: #333; color: #fff; border-color: #555'}}) }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form_row(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Description', 'style': 'background-color: #333; color: #fff; border-color: #555'}}) }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form_row(form.level, {'attr': {'class': 'form-control', 'placeholder': 'Level', 'style': 'background-color: #333; color: #fff; border-color: #555'}}) }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form_row(form.subject, {'attr': {'class': 'form-control', 'placeholder': 'Subject', 'style': 'background-color: #333; color: #fff; border-color: #555'}}) }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">{{ button_label|default('Save') }}</button>
+            </div>
+        </div>
+    {{ form_end(form) }}
+</div>
