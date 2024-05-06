@@ -1,20 +1,87 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SupportController!{% endblock %}
+{% block title %}Support Page{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Dark Mode CSS -->
+    <style>
+        body.dark-mode {
+            background-color: #121212;
+            color: #fff;
+        }
+        .list-group-item {
+            background-color: #333;
+            border-color: #444;
+        }
+        .list-group-item:hover {
+            background-color: #444;
+        }
+    </style>
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Kayto/Desktop/IT/CODE/Github/vs-code/Projects/Prototype/Prepa-Du-Prepa/src/Controller/SupportController.php'|file_link(0) }}">src/Controller/SupportController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Kayto/Desktop/IT/CODE/Github/vs-code/Projects/Prototype/Prepa-Du-Prepa/templates/support/index.html.twig'|file_link(0) }}">templates/support/index.html.twig</a></code></li>
-    </ul>
+<div class="container text-light ">
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h1 class="text-center mb-5">Support Page</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Courses</h2>
+            <ul class="list-group">
+                {% for i in 1..10 %}
+                    <li class="list-group-item">Course {{ i }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h2>TDs</h2>
+            <ul class="list-group">
+                {% for i in 1..10 %}
+                    <li class="list-group-item">TD {{ i }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h2>TPs</h2>
+            <ul class="list-group">
+                {% for i in 1..10 %}
+                    <li class="list-group-item">TP {{ i }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h2>Exams</h2>
+            <ul class="list-group">
+                {% for i in 1..10 %}
+                    <li class="list-group-item">Exam {{ i }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h2>Competitions</h2>
+            <ul class="list-group">
+                {% for i in 1..10 %}
+                    <li class="list-group-item">Competition {{ i }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- Include Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 {% endblock %}
