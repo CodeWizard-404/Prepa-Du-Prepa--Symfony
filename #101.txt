@@ -1,0 +1,32 @@
+
+composer create-project symfony/website-skeleton SymfonyProject_* ~5.4.21
+
+
+cd [Project_Folder]
+
+
+php bin/console make:controller DemoController
+
+
+composer.json > "symfony/asset-mapper": "6.3.*",
+
+composer require --dev symfony/maker-bundle
+composer require annotations
+composer update
+
+php -S localhost:8000 -t public
+
+
+
+
+
+--- CREATE CONTROLLER
+php bin/console make:controller DemoController
+
+--- CREATE DATABASE
+php bin/console doctrine:database:create
+
+php bin/console doctrine:schema:update --force --dump-sql
+
+--- CREATE ENTITY
+php bin/console make:entity
