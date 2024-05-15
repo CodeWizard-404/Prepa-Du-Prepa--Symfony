@@ -6,24 +6,35 @@
     {{ parent() }}
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Dark Mode CSS -->
+    <!-- Custom CSS -->
     <style>
-        body.dark-mode {
+        body {
             background-color: #121212;
             color: #fff;
         }
         .list-group-item {
             background-color: #333;
             border-color: #444;
+            color: #fff;
         }
         .list-group-item:hover {
             background-color: #444;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+        .section-title {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            color: #007bff;
         }
     </style>
 {% endblock %}
 
 {% block body %}
-<div class="container text-light ">
+<div class="container">
     <div class="row mt-5">
         <div class="col-md-12">
             <h1 class="text-center mb-5">Support Page</h1>
@@ -31,7 +42,7 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            <h2>Courses</h2>
+            <h2 class="section-title">Courses</h2>
             <ul class="list-group">
                 {% for i in 1..10 %}
                     <li class="list-group-item">Course {{ i }}</li>
@@ -39,7 +50,7 @@
             </ul>
         </div>
         <div class="col-md-4">
-            <h2>TDs</h2>
+            <h2 class="section-title">TDs</h2>
             <ul class="list-group">
                 {% for i in 1..10 %}
                     <li class="list-group-item">TD {{ i }}</li>
@@ -47,7 +58,7 @@
             </ul>
         </div>
         <div class="col-md-4">
-            <h2>TPs</h2>
+            <h2 class="section-title">TPs</h2>
             <ul class="list-group">
                 {% for i in 1..10 %}
                     <li class="list-group-item">TP {{ i }}</li>
@@ -57,7 +68,7 @@
     </div>
     <div class="row mt-5">
         <div class="col-md-12">
-            <h2>Exams</h2>
+            <h2 class="section-title">Exams</h2>
             <ul class="list-group">
                 {% for i in 1..10 %}
                     <li class="list-group-item">Exam {{ i }}</li>
@@ -67,7 +78,7 @@
     </div>
     <div class="row mt-5">
         <div class="col-md-12">
-            <h2>Competitions</h2>
+            <h2 class="section-title">Competitions</h2>
             <ul class="list-group">
                 {% for i in 1..10 %}
                     <li class="list-group-item">Competition {{ i }}</li>

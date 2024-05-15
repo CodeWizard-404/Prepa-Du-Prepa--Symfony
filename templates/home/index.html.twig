@@ -1,118 +1,272 @@
-{# templates/home/index.html.twig #}
-
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-12">
-                <div class="jumbotron bg-dark text-white">
-                    <h1 class="display-4">Welcome to PREPA DU PREPA</h1>
-                    <p class="lead">Search for anything</p>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Search for anything">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-light" type="button">Search</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: trans;
 
-        <div class="row mb-4">
-            <div class="col-12">
-                <h2 class="text-white">Professeur</h2>
-            </div>
-        </div>
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 16px;
 
-        <div class="row">
-            <div class="col-12">
-                <div class="professor-slider d-flex overflow-auto">
-                    <div class="card bg-dark text-white mr-3" style="width: 18rem;">
-                        <img src="{{ asset('images/professor-avatar.png') }}" class="card-img-top" alt="Professor 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Professor 1</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                    <div class="card bg-dark text-white mr-3" style="width: 18rem;">
-                        <img src="{{ asset('images/professor-avatar.png') }}" class="card-img-top" alt="Professor 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Professor 2</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                    <div class="card bg-dark text-white mr-3" style="width: 18rem;">
-                        <img src="{{ asset('images/professor-avatar.png') }}" class="card-img-top" alt="Professor 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Professor 3</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                    <div class="card bg-dark text-white mr-3" style="width: 18rem;">
-                        <img src="{{ asset('images/professor-avatar.png') }}" class="card-img-top" alt="Professor 4">
-                        <div class="card-body">
-                            <h5 class="card-title">Professor 4</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                    <div class="card bg-dark text-white mr-3" style="width: 18rem;">
-                        <img src="{{ asset('images/professor-avatar.png') }}" class="card-img-top" alt="Professor 5">
-                        <div class="card-body">
-                            <h5 class="card-title">Professor 5</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
 
-        <div class="row mt-5">
-            <div class="col-12">
-                <h2 class="text-white">Section</h2>
-            </div>
-        </div>
+        /* Custom Styles */
+        .jumbotron {
+            background: linear-gradient(to right, #1c1c1c, #383838);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
 
-        <div class="row">
-            <div class="col-12">
-                <div class="section-slider d-flex overflow-auto">
-                    <div class="card bg-dark text-white mr-3" style="width: 18rem;">
-                        <img src="{{ asset('images/section-icon.png') }}" class="card-img-top" alt="Section 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Section 1</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                    <div class="card bg-dark text-white mr-3" style="width: 18rem;">
-                        <img src="{{ asset('images/section-icon.png') }}" class="card-img-top" alt="Section 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Section 2</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                    <div class="card bg-dark text-white mr-3" style="width: 18rem;">
-                        <img src="{{ asset('images/section-icon.png') }}" class="card-img-top" alt="Section 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Section 3</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                    <div class="card bg-dark text-white mr-3" style="width: 18rem;">
-                        <img src="{{ asset('images/section-icon.png') }}" class="card-img-top" alt="Section 4">
-                        <div class="card-body">
-                            <h5 class="card-title">Section 4</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                    <div class="card bg-dark text-white mr-3" style="width: 18rem;">
-                        <img src="{{ asset('images/section-icon.png') }}" class="card-img-top" alt="Section 5">
-                        <div class="card-body">
-                            <h5 class="card-title">Section 5</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        .jumbotron input[type="text"] {
+            border-radius: 20px;
+            padding: 12px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .jumbotron input[type="text"]:focus {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: #333;
+        }
+
+        .jumbotron button {
+            border-radius: 20px;
+            padding: 12px 24px;
+            background-color: #4c669f;
+            border: none;
+            color: white;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .jumbotron button:hover {
+            background-color: #3b5998;
+        }
+
+        .card {
+            background-color: #383838;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            margin-right: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 100%;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: left 0.3s ease;
+            z-index: 1;
+        }
+
+        .card:hover::before {
+            left: 0;
+        }
+
+        .card:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .card img {
+            border-radius: 20px 20px 0 0;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            border-radius: 20px;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-light {
+            background-color: #4c669f;
+            color: white;
+            border: 2px solid #4c669f;
+        }
+
+        .btn-light:hover {
+            background-color: #3b5998;
+            border-color: #3b5998;
+        }
+
+        .text-white {
+            color: white;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .section-slider {
+            margin-bottom: 5px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+    </style>
 {% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="jumbotron text-center">
+                    <h1 class="display-4 mb-4">Welcome to PREPA DU PREPA</h1>
+                    <form class="mb-4">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for anything">
+                            <div class="input-group-append">
+                                <button class="btn" type="submit">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-lg-12 ">
+                <h2 class="text-white text-center section-title fade-in-up">Professeur</h2>
+                <div class="professor-slider d-flex overflow-auto custom-scrollbar">
+                    <div class="card-container d-flex">
+                        {% for i in 1..16 %}
+                            <div class="card mr-3 fade-in-up" style="width: 18rem;">
+                                <img src="{{ asset('images/professor-avatar.png') }}" class="card-img-top" alt="Professor {{ i }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">Professor {{ i }}</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <a href="#" class="btn btn-light">View Details</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-lg-12">
+                <h2 class="text-white text-center section-title fade-in-up">Section</h2>
+                <div class="section-slider d-flex overflow-auto custom-scrollbar">
+                    <div class="card-container d-flex">
+                        {% for i in 1..16 %}
+                            <div class="card mr-3 fade-in-up" style="width: 18rem;">
+                                <img src="{{ asset('images/section-icon.png') }}" class="card-img-top" alt="Section {{ i }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">Section {{ i }}</h5>
+                                                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                                            <a href="#" class="btn btn-light">Explore</a>
+                                                                        </div>
+                                                                    </div>
+                                                                {% endfor %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                            <script>
+                                                document.addEventListener("DOMContentLoaded", function() {
+                                                    // Slide animation for professor and section sliders
+                                                    const professorSlider = document.querySelector('.professor-slider');
+                                                    const sectionSlider = document.querySelector('.section-slider');
+                                        
+                                                    function slideCards(container) {
+                                                        let cards = container.querySelectorAll('.card');
+                                                        cards.forEach((card, index) => {
+                                                            setTimeout(() => {
+                                                                card.classList.add('fade-in-up');
+                                                            }, index * 100);
+                                                        });
+                                                    }
+                                        
+                                                    if (professorSlider) {
+                                                        slideCards(professorSlider);
+                                                    }
+                                        
+                                                    if (sectionSlider) {
+                                                        slideCards(sectionSlider);
+                                                    }
+                                        
+                                                    // Smooth scroll functionality for custom scrollbar
+                                                    const customScrollbar = document.querySelectorAll('.custom-scrollbar');
+                                                    customScrollbar.forEach(scrollbar => {
+                                                        scrollbar.addEventListener('wheel', e => {
+                                                            e.preventDefault();
+                                                            const delta = e.deltaY || e.detail || e.wheelDelta;
+                                        
+                                                            scrollbar.scrollLeft += delta;
+                                                        });
+                                                    });
+                                        
+                                                    // Handle form submission
+                                                    const searchForm = document.querySelector('form');
+                                                    if (searchForm) {
+                                                        searchForm.addEventListener('submit', function(e) {
+                                                            e.preventDefault();
+                                                            const searchTerm = this.querySelector('input').value;
+                                                            // Perform search or other action
+                                                            console.log("Search term:", searchTerm);
+                                                        });
+                                                    }
+                                                });
+                                            </script>
+                                        {% endblock %}
+                                        
