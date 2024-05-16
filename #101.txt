@@ -55,13 +55,16 @@ php bin/console make:admin:crud User
 composer.json > "symfony/asset-mapper": "6.3.*",
 
 
+symfony composer req "easycorp/easyadmin-bundle:4.x-dev"
+symfony console make:admin:dashboard
+
+composer require symfonycasts/verify-email-bundle  (registration)
 
 
 
-
-
-
-
+symfony console make:registration
+noReply@PrepaDuPrepa.com
+PDP bot
 
 
 
