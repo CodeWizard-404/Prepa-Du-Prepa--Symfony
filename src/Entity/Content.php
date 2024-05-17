@@ -26,6 +26,9 @@ class Content
     #[ORM\Column(length: 20)]
     private ?string $document = null;
 
+    #[ORM\ManyToOne(targetEntity: Course::class, inversedBy: 'contents')]
+    private ?Course $course = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class Content
     public function setDocument(string $document): static
     {
         $this->document = $document;
+
+        return $this;
+    }
+
+    public function getCourse(): ?Course
+    {
+        return $this->course;
+    }
+
+    public function setCourse(?Course $course): static
+    {
+        $this->course = $course;
 
         return $this;
     }

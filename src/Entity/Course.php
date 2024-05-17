@@ -3,8 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\CourseRepository;
-use Doctrine\DBAL\Types\Types;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\DBAL\Types\Types;
 
 #[ORM\Entity(repositoryClass: CourseRepository::class)]
 class Course
@@ -28,6 +30,14 @@ class Course
 
     #[ORM\ManyToOne(inversedBy: 'courses')]
     private ?User $id_user = null;
+
+    #[ORM\OneToMany(mappedBy: 'course', targetEntity: Content::class)]
+    private Collection $contents;
+
+    public function __construct()
+    {
+        $this->contents = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -90,6 +100,36 @@ class Course
     public function setIdUser(?User $id_user): static
     {
         $this->id_user = $id_user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Content>
+     */
+    public function getContents(): Collection
+    {
+        return $this->contents;
+    }
+
+    public function addContent(Content $content): static
+    {
+        if (!$this->contents->contains($content)) {
+            $this->contents->add($content);
+            $content->setCourse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContent(Content $content): static
+    {
+        if ($this->contents->removeElement($content)) {
+            // set the owning side to null (unless already changed)
+            if ($content->getCourse() === $this) {
+                $content->setCourse(null);
+            }
+        }
 
         return $this;
     }
