@@ -34,11 +34,15 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $userAuthenticator->authenticateUser(
-                $user,
-                $authenticator,
-                $request
-            );
+            // return $userAuthenticator->authenticateUser(
+            //     $user,
+            //     $authenticator,
+            //     $request
+            // );
+            return $this->redirectToRoute('app_login', [
+                'username' => $user->getUsername(),
+                'email' => $user->getEmail(),
+            ]);
         }
 
         return $this->render('registration/register.html.twig', [

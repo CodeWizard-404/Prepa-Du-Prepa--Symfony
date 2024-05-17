@@ -1,3 +1,5 @@
+{# login.html.twig #}
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Log in!{% endblock %}
@@ -51,29 +53,51 @@
 {% endblock %}
 
 {% block body %}
-<form method="post" class="form-signin">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
     {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}" style="color: #fff;">Logout</a>
-        </div>
+        {% if app.user.isAdmin %}
+            {% set redirectRoute = 'admin' %}
+        {% else %}
+            {% set redirectRoute = 'user' %}
+        {% endif %}
+        <script>window.location.href = '{{ path(redirectRoute) }}';</script>
+    {% else %}
+        <form method="post" class="form-signin">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            <h1 class="h3 mb-3 font-weight-normal text-center">Please sign in</h1>
+            <label for="inputEmail">Email</label>
+            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+            <label for="inputPassword">Password</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+            <input type="hidden" name="_csrf_token"value="{{ csrf_token('authenticate') }}">
+
+            <button class="btn btn-lg btn-primary" type="submit">
+                Login
+            </button>
+            <hr style="border:none;" >
+
+            <div class="text-center mb-3 pt-6">
+                <hr class="w-25 bg-secondary float-left">
+                <span class="px-2 text-muted">or</span>
+                <hr class="w-25 bg-secondary float-right">
+            </div>
+
+            <a href="{{ path('app_register') }}" class="btn btn-lg btn-secondary">Sign Up</a>
+        </form>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Function to submit the form when Enter key is pressed
+                document.getElementById("loginForm").addEventListener("keydown", function(event) {
+                    if (event.key === "Enter") {
+                        event.preventDefault(); // Prevent default form submission
+                        document.getElementById("loginForm").submit(); 
+                    }
+                });
+            });
+        </script>
     {% endif %}
-
-    <h1 class="h3 mb-3 font-weight-normal text-center">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-    <input type="hidden" name="_csrf_token"
-            value="{{ csrf_token('authenticate') }}"
-    >
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
 {% endblock %}

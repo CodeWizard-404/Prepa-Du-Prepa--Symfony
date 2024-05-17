@@ -2,6 +2,10 @@
 php -S localhost:8000 -t public
 
 
+php bin/console debug:router --show-controllers
+
+
+
 composer create-project symfony/website-skeleton SymfonyProject_* ~5.4.21
 
 cd [Project_Folder]
@@ -68,3 +72,6 @@ PDP bot
 
 
 
+
+--OLD  templates\dashboard.html.twig
+{% extends "@EasyAdmin/page/content.html.twig"%}

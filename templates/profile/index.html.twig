@@ -1,0 +1,21 @@
+{# templates/profile/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+    <h1>Welcome, {{ user.username }}!</h1>
+    
+    <h2>Profile Information:</h2>
+    <p>Name: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+    <!-- Add more profile information as needed -->
+    
+    <h2>Enrolled Courses:</h2>
+    <ul>
+        {% for course in enrolledCourses %}
+            <li>{{ course.title }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
