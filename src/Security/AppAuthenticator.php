@@ -1,5 +1,4 @@
 <?php
-// src/Security/AppAuthenticator.php
 
 namespace App\Security;
 
@@ -45,7 +44,6 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        // Check the user's role and redirect accordingly
         $user = $token->getUser();
         if ($user->isAdmin()) {
             return new RedirectResponse($this->urlGenerator->generate('admin'));
