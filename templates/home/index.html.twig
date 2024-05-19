@@ -86,9 +86,9 @@
             z-index: 1;
         }
 
-        .card:hover::before {
+        /* .card:hover::before {
             left: 0;
-        }
+        } */
 
         .card:hover {
             transform: translateY(-5px) scale(1.03);
@@ -176,23 +176,24 @@
                                     <button class="btn btn-primary" type="submit" style="margin:0;">Search</button>
                             </div>
                         </div>
-                    </form>
+                    </form>                
                 </div>
             </div>
         </div>
 
         <div class="row mb-5">
-            <div class="col-lg-12 ">
+            <div class="col-lg-12">
                 <h2 class="text-white text-center section-title fade-in-up">Professeur</h2>
                 <div class="professor-slider d-flex overflow-auto custom-scrollbar">
                     <div class="card-container d-flex">
-                        {% for i in 1..16 %}
+                        {% for professor in professors %}
                             <div class="card mr-3 fade-in-up" style="width: 18rem;">
-                                <img src="{{ asset('images/professor-avatar.png') }}" class="card-img-top" alt="Professor {{ i }}">
+                                <img src="{{ asset('images/professor-avatar.png') }}" class="card-img-top" alt="Professor {{ professor.username }}">
                                 <div class="card-body">
-                                    <h5 class="card-title">Professor {{ i }}</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-light">View Details</a>
+                                    <h5 class="card-title">{{ professor.username }}</h5>
+                                    <p class="card-text"><b>Email:</b> {{ professor.email }}</p>
+                                    <p class="card-text"><b>Num de telephone:</b> {{ professor.telephone }}</p>
+                                    <a href="{{ path('user_profile', {'id': professor.id}) }}" class="btn btn-light">View Details</a>
                                 </div>
                             </div>
                         {% endfor %}
@@ -206,21 +207,21 @@
                 <h2 class="text-white text-center section-title fade-in-up">Section</h2>
                 <div class="section-slider d-flex overflow-auto custom-scrollbar">
                     <div class="card-container d-flex">
-                        {% for i in 1..16 %}
+                        {% for course in courses %}
                             <div class="card mr-3 fade-in-up" style="width: 18rem;">
-                                <img src="{{ asset('images/section-icon.png') }}" class="card-img-top" alt="Section {{ i }}">
+                                <img src="{{ asset('images/section-icon.png') }}" class="card-img-top">
                                 <div class="card-body">
-                                    <h5 class="card-title">Section {{ i }}</h5>
-                                                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                                                            <a href="#" class="btn btn-light">Explore</a>
-                                                                        </div>
-                                                                    </div>
-                                                                {% endfor %}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <h5 class="card-title">{{ course.title }}</h5>
+                                    <p class="card-text"><b>Description:</b> {{ course.description }}</p>
+                                    <a href="#" class="btn btn-light">Explore</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
                                         
                                             <script>
                                                 document.addEventListener("DOMContentLoaded", function() {

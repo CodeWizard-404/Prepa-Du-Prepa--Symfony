@@ -5,14 +5,16 @@
 {% block title %}Profile{% endblock %}
 
 {% block body %}
-    <h1>Welcome, {{ user.username }}!</h1>
+    {# <h1>Welcome, {{ user.username }}!</h1> #}
+    <h1>Welcome</h1>
     
     <h2>Profile Information:</h2>
     <p>Name: {{ user.username }}</p>
     <p>Email: {{ user.email }}</p>
+    <p>Phone: {{ user.telephone }}</p>
     <!-- Add more profile information as needed -->
     
-    <h2>Enrolled Courses:</h2>
+    {# <h2>Enrolled Courses:</h2> #}
     {# <ul>
         {% for course in enrolledCourses %}
             <li>{{ course.title }}</li>
