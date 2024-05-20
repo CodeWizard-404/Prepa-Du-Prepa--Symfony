@@ -43,15 +43,9 @@ class DashboardController extends AbstractDashboardController
             ->getQuery()
             ->getSingleScalarResult();
 
-        $pendingRequestsCount = 10;
-        $latestUsers = ['User 1', 'User 2', 'User 3'];
-        $popularCourses = ['Course A', 'Course B', 'Course C'];
+        $latestContent = ['Content 1', 'Content 2', 'Content 3'];
     
-        $courseEnrollment = [
-            'Course X' => 50,
-            'Course Y' => 100,
-            'Course Z' => 150,
-        ];
+
 
         $adminCount = $userRepository->countByRole('admin');
         $professorCount = $userRepository->countByRole('professeur');
@@ -65,10 +59,7 @@ class DashboardController extends AbstractDashboardController
             'usersCount' => $usersCount,
             'coursesCount' => $coursesCount,
             'contentCount' => $contentCount,
-            'pendingRequestsCount' => $pendingRequestsCount,
-            'latestUsers' => $latestUsers,
-            'popularCourses' => $popularCourses,
-            'courseEnrollment' => $courseEnrollment,
+            'latestContent' => $latestContent,
         ]);
     }
 

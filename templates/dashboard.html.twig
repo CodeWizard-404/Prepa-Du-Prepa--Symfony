@@ -32,14 +32,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3">
-            <div class="info-card info-card-warning">
-                <div class="info-card-content">
-                    <span class="info-card-title">Pending Requests</span>
-                    <span class="info-card-value">{{ pendingRequestsCount }}</span>
-                </div>
-            </div>
-        </div>
+        
     </div>
 
     <div class="row mt-4">
@@ -56,45 +49,23 @@
             </div>
         </div>
         
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Course Enrollment</h5>
-                    <ul>
-                        {% for course, count in courseEnrollment %}
-                            <li>{{ course }}: {{ count }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </div>
+        
     </div>
 
     <div class="row mt-4">
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Latest Users</h5>
+                    <h5 class="card-title">Latest Content</h5>
                     <ul class="latest-list">
-                        {% for user in latestUsers %}
-                            <li>{{ user }}</li>
+                        {% for content in latestContent %}
+                            <li>{{ content }}</li>
                         {% endfor %}
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Most Popular Courses</h5>
-                    <ul class="popular-courses-list">
-                        {% for course in popularCourses %}
-                            <li>{{ course }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </div>
+        
     </div>
 {% endblock %}
 
