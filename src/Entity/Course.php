@@ -25,8 +25,8 @@ class Course
     #[ORM\Column(length: 20)]
     private ?string $level = null;
 
-    #[ORM\Column(length: 200)]
-    private ?string $subject = null;
+    #[ORM\Column(type: Types::JSON)]
+    private ?array $subjects = null;
 
     #[ORM\ManyToOne(inversedBy: 'courses')]
     private ?User $id_user = null;
@@ -80,15 +80,15 @@ class Course
         return $this;
     }
 
-    public function getSubject(): ?string
+    public function getSubjects(): ?array
     {
-        return $this->subject;
+        return $this->subjects;
     }
-
-    public function setSubject(string $subject): static
+    
+    public function setSubjects(?array $subject): static
     {
-        $this->subject = $subject;
-
+        $this->subjects = $subject;
+    
         return $this;
     }
 
