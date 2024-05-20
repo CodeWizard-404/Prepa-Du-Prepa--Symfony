@@ -185,13 +185,13 @@
 {% endblock %}
 
 {% block body %}
-    <div class="profile-container">
+    <div class="profile-container" style="margin-top:50px; margin-bottom:50px">
         <div class="profile-header">
             <div class="profile-header-info">
                 <img src="{{ asset('images/avatar.jpg') }}" alt="Avatar" class="avatar">
-                <h1 class="profile-title">Welcome, {{ user.username }}!</h1>
+                <h1 class="profile-title">WELCOME!</h1>
             </div>
-            <button class="edit-profile-btn">Edit Profile</button>
+            {# <button class="edit-profile-btn">Edit Profile</button> #}
         </div>
         <div class="profile-body">
             <div class="profile-section">
@@ -213,10 +213,10 @@
                         
                         <!-- Add more profile information as needed -->
                     </div>
-                    <button type="submit" id="save-profile-btn" class="hidden">Save</button>
+                    {# <button type="submit" id="save-profile-btn" class="hidden">Save</button> #}
                 </form>
             </div>
-            <div class="profile-section">
+            {# <div class="profile-section">
                 <h2 class="section-title">Enrolled Courses</h2>
                 <div class="enrolled-courses">
                     <!-- Display enrolled courses here -->
@@ -231,7 +231,7 @@
                 <textarea name="description" placeholder="Course Description" required></textarea>
                 <button type="submit">Add Course</button>
             </form>
-        </div>
+        </div> #}
     </div>
     <script >
 
