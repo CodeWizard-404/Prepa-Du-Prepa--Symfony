@@ -6,8 +6,13 @@ use App\Repository\ContentRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+/**
+ * @IgnoreAnnotation("ORM\Column")]
+ */
 #[ORM\Entity(repositoryClass: ContentRepository::class)]
+#[Vich\Uploadable]
 class Content
 {
     #[ORM\Id]
@@ -30,8 +35,11 @@ class Content
     #[ORM\ManyToOne(targetEntity: Course::class, inversedBy: 'contents')]
     private ?Course $course = null;
 
-      /**
+
+    
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Vich\UploadableField(mapping="content_documents", fileNameProperty="documentPath")
      */
     private ?string $documentPath = null;
 

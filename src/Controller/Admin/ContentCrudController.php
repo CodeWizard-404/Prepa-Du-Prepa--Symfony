@@ -27,6 +27,7 @@ class ContentCrudController extends AbstractCrudController
             // IdField::new('id'),
             ChoiceField::new('type')
                 ->setChoices([
+                    'Cours'=>'Cours',
                     'TP' => 'TP',
                     'TD' => 'TD',
                     'EXAM' => 'EXAM',
