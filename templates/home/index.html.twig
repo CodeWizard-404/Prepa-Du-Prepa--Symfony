@@ -222,8 +222,10 @@
                                 <img src="{{ asset('images/professor-avatar.png') }}" class="card-img-top" alt="Professor {{ professor.username }}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ professor.username }}</h5>
+                                    <br>
                                     <p class="card-text"><b>Email:</b> {{ professor.email }}</p>
                                     <p class="card-text"><b>Num de telephone:</b> {{ professor.telephone }}</p>
+                                    <br>
                                     <a href="{{ path('user_profile', {'id': professor.id}) }}" class="btn btn-light">View Details</a>
                                 </div>
                             </div>
@@ -243,8 +245,9 @@
                                 <img src="{{ asset('images/section-icon.png') }}" class="card-img-top">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ course.title }}</h5>
-                                    <p class="card-text"><b>Level:</b> {{ course.level }}</p>
-                                    <p class="card-text"><b>Description:</b> {{ course.description }}</p>
+                                    <p class="card-text"><b>Level:</b>{{ course.level }}</p>
+                                    <p class="card-text"><b>Description:</b> {{ course.description|raw }}</p>
+                                    <br>
                                     <a href="{{ path('course_show', {'id': course.id}) }}" class="btn btn-light">Explore</a>
                                 </div>
                             </div>
