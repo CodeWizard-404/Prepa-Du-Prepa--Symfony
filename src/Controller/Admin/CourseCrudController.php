@@ -34,6 +34,8 @@ class CourseCrudController extends AbstractCrudController
         ];
     }
 
+
+
     public function configureCrud(Crud $crud): Crud
     {
         return $crud

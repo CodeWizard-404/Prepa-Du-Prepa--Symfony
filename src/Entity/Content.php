@@ -17,6 +17,9 @@ class Content
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $content = null;
+
     #[ORM\Column(length: 20)]
     private ?string $type = null;
 
@@ -28,6 +31,9 @@ class Content
 
     #[ORM\ManyToOne(targetEntity: Course::class, inversedBy: 'contents')]
     private ?Course $course = null;
+
+    #[ORM\Column(length: 60, nullable: true)]
+    private ?string $subject = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $documentPath = null;
@@ -41,6 +47,17 @@ class Content
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(?string $content): self
+    {
+        $this->content = $content;
+        return $this;
     }
 
     public function getType(): ?string
@@ -91,6 +108,23 @@ class Content
         return $this;
     }
 
+    public function getSubject(): ?string
+    {
+        return $this->subject;
+    }
+
+    public function setSubject(?string $subject): static
+    {
+        $this->subject = $subject;
+
+        return $this;
+    }
+
+    public function getSubjects(): ?array
+    {
+        return $this->course ? $this->course->getSubjects() : null;
+    }
+
     public function getDocumentPath(): ?string
     {
         return $this->documentPath;
@@ -131,4 +165,6 @@ class Content
 
         return $this;
     }
+
+    
 }

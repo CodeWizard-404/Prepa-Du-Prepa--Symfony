@@ -14,6 +14,13 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/course')]
 class CourseController extends AbstractController
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     #[Route('/', name: 'app_course_index', methods: ['GET'])]
     public function index(CourseRepository $courseRepository): Response
     {
@@ -42,11 +49,22 @@ class CourseController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_course_show', methods: ['GET'])]
+    // #[Route('/{id}', name: 'app_course_show', methods: ['GET'])]
+    // public function show(Course $course): Response
+    // {
+    //     return $this->render('course/show.html.twig', [
+    //         'course' => $course,
+    //     ]);
+    // }
+    // src/Controller/CourseController.php
+
+    #[Route('/course/{id}', name: 'course_show')]
     public function show(Course $course): Response
     {
+        $contents = $course->getContents()->toArray();
         return $this->render('course/show.html.twig', [
             'course' => $course,
+            'contents' => $contents,
         ]);
     }
 

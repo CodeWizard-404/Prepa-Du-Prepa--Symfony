@@ -4,8 +4,9 @@ namespace App\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Content;
+use App\Entity\Course;
 use App\Form\ContentType;
-
+use App\Repository\CourseRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -18,15 +19,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class ContentCrudController extends AbstractCrudController
 {
     private EntityManagerInterface $entityManager;
+    private CourseRepository $courseRepository;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager, CourseRepository $courseRepository)
     {
         $this->entityManager = $entityManager;
+        $this->courseRepository = $courseRepository;
     }
 
     #[Route(path: '/content', name: 'content')]
@@ -43,16 +46,14 @@ class ContentCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            // IdField::new('id'),
-
+            //IdField::new('id')->hideOnForm(),
             AssociationField::new('course')
-            ->setCrudController(CourseCrudController::class)
-            ->setRequired(true),
-
-            /*AssociationField::new('course.subjects')
-            ->setCrudController(CourseCrudController::class)
-            ->setRequired(true),*/
-
+                ->setCrudController(CourseCrudController::class)
+                ->setRequired(true),
+            
+            ChoiceField::new('subject')
+                ->setChoices($this->getSubjectsFromCourses()),    
+            
             ChoiceField::new('type')
                 ->setChoices([
                     'Cours' => 'Cours',
@@ -61,19 +62,28 @@ class ContentCrudController extends AbstractCrudController
                     'EXAM' => 'EXAM',
                 ]),
             TextField::new('title'),
-
             TextEditorField::new('description'),
 
             Field::new('documentFile')
                 ->setFormType(VichFileType::class)
                 ->setLabel('Document')
                 ->onlyOnForms(),
-
             TextField::new('documentPath')
                 ->setLabel('Document Path')
                 ->onlyOnIndex(),
-
         ];
+    }
+
+    private function getSubjectsFromCourses(): array
+    {
+        $courses = $this->courseRepository->findAll();
+        $subjects = [];
+        foreach ($courses as $course) {
+            foreach ($course->getSubjects() as $subject) {
+                $subjects[$subject] = $subject;
+            }
+        }
+        return $subjects;
     }
 
     public function create(Request $request): Response
@@ -100,12 +110,9 @@ class ContentCrudController extends AbstractCrudController
         ]);
     }
 
-
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
             ->setPaginatorPageSize(50);
     }
-
-    
 }
