@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ContentRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 
 #[ORM\Entity(repositoryClass: ContentRepository::class)]
 class Content
@@ -23,11 +24,21 @@ class Content
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 20)]
-    private ?string $document = null;
+    #[ORM\Column(type: 'json', nullable: true)]
+    private ?array $document = null;
 
     #[ORM\ManyToOne(targetEntity: Course::class, inversedBy: 'contents')]
     private ?Course $course = null;
+
+      /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $documentPath = null;
+
+    /**
+     * @Vich\UploadableField(mapping="content_documents", fileNameProperty="documentPath")
+     */
+    private ?File $documentFile = null;
 
     public function getId(): ?int
     {
@@ -70,12 +81,12 @@ class Content
         return $this;
     }
 
-    public function getDocument(): ?string
+    public function getDocument(): ?array
     {
         return $this->document;
     }
 
-    public function setDocument(string $document): static
+    public function setDocument(?array $document): static
     {
         $this->document = $document;
 
@@ -94,3 +105,4 @@ class Content
         return $this;
     }
 }
+
