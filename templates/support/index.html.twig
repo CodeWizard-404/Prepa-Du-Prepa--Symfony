@@ -43,25 +43,25 @@
     <div class="row">
         <div class="col-md-4">
             <h2 class="section-title">Courses</h2>
-            <ul class="list-group">
-                {% for i in 1..10 %}
-                    <li class="list-group-item">Course {{ i }}</li>
+            <ul class="list-group"> 
+                {% for course in courses %}
+                    <li class="list-group-item">{{course.title}}</li>
                 {% endfor %}
             </ul>
         </div>
         <div class="col-md-4">
             <h2 class="section-title">TDs</h2>
             <ul class="list-group">
-                {% for i in 1..10 %}
-                    <li class="list-group-item">TD {{ i }}</li>
+                {% for TD in TDs %}
+                    <li class="list-group-item">{{TD.title}}</li>
                 {% endfor %}
             </ul>
         </div>
         <div class="col-md-4">
             <h2 class="section-title">TPs</h2>
             <ul class="list-group">
-                {% for i in 1..10 %}
-                    <li class="list-group-item">TP {{ i }}</li>
+                {% for TP in TPs %}
+                    <li class="list-group-item">{{TP.title}}</li>
                 {% endfor %}
             </ul>
         </div>
@@ -70,8 +70,8 @@
         <div class="col-md-12">
             <h2 class="section-title">Exams</h2>
             <ul class="list-group">
-                {% for i in 1..10 %}
-                    <li class="list-group-item">Exam {{ i }}</li>
+                {% for EXAM in EXAMs %}
+                    <li class="list-group-item">{{EXAM.title}}</li>
                 {% endfor %}
             </ul>
         </div>

@@ -21,6 +21,26 @@ class ContentRepository extends ServiceEntityRepository
         parent::__construct($registry, Content::class);
     }
 
+        /**
+     * Find courses by type.
+     *
+     * @param string $type The type of the course (TP/TD/Exam).
+     * @return Course[] Returns an array of Course objects.
+     */
+    public function findByType(string $type): array
+    {
+        // Create a QueryBuilder instance
+        $qb = $this->createQueryBuilder('c')
+            ->where('c.type = :type')
+            ->setParameter('type', $type);
+
+        // Get the query and execute it
+        $query = $qb->getQuery();
+
+        // Return the result as an array of Course objects
+        return $query->getResult();
+    }
+
 //    /**
 //     * @return Content[] Returns an array of Content objects
 //     */
