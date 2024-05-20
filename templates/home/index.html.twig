@@ -111,7 +111,7 @@
         .card-text {
             font-size: 16px;
             line-height: 1.6;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .btn {
@@ -182,14 +182,14 @@
             <div class="col-lg-12">
                 <div class="jumbotron text-center">
                     <h1 class="display-4 mb-4">Welcome to PREPA DU PREPA</h1>
-                    {# <form class="mb-4" method="get" action="{{ path('app_home') }}">
+                    <form class="mb-4" method="get" action="{{ path('app_home') }}">
                         <div class="input-group">
                             <input type="text" name="q" class="form-control" placeholder="Search for anything" style="padding:30px;">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="submit" style="margin:0;">Search</button>
                             </div>
                         </div>
-                    </form>                 #}
+                    </form>                 
                 </div>
             </div>
         </div>
@@ -224,8 +224,6 @@
                                     <h5 class="card-title">{{ professor.username }}</h5>
                                     <br>
                                     <p class="card-text"><b>Email:</b> {{ professor.email }}</p>
-                                    <p class="card-text"><b>Num de telephone:</b> {{ professor.telephone }}</p>
-                                    <br>
                                     <a href="{{ path('user_profile', {'id': professor.id}) }}" class="btn btn-light">View Details</a>
                                 </div>
                             </div>
@@ -305,4 +303,3 @@
         });
     </script>
 {% endblock %}
-                                        
