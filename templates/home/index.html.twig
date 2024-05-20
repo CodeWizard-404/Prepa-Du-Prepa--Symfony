@@ -169,17 +169,35 @@
             <div class="col-lg-12">
                 <div class="jumbotron text-center">
                     <h1 class="display-4 mb-4">Welcome to PREPA DU PREPA</h1>
-                    <form class="mb-4">
+                    <form class="mb-4" method="get" action="{{ path('app_home') }}">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for anything" style="padding:30px;">
+                            <input type="text" name="q" class="form-control" placeholder="Search for anything" style="padding:30px;">
                             <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit" style="margin:0;">Search</button>
+                                <button class="btn btn-primary" type="submit" style="margin:0;">Search</button>
                             </div>
                         </div>
                     </form>                
                 </div>
             </div>
         </div>
+
+        {% if results %}
+            <div class="row mb-5">
+                <div class="col-lg-12">
+                    <h2 class="text-white text-center section-title fade-in-up">Search Results</h2>
+                    <div class="search-results">
+                        <ul>
+                            {% for result in results %}
+                                <li >
+                                    <h3>{{ result.title }}</h3>
+                                    <!-- Display other fields as needed -->
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
 
         <div class="row mb-5">
             <div class="col-lg-12">
@@ -212,6 +230,7 @@
                                 <img src="{{ asset('images/section-icon.png') }}" class="card-img-top">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ course.title }}</h5>
+                                    <p class="card-text"><b>Level:</b> {{ course.level }}</p>
                                     <p class="card-text"><b>Description:</b> {{ course.description }}</p>
                                     <a href="#" class="btn btn-light">Explore</a>
                                 </div>

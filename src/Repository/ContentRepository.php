@@ -21,48 +21,28 @@ class ContentRepository extends ServiceEntityRepository
         parent::__construct($registry, Content::class);
     }
 
-        /**
-     * Find courses by type.
-     *
-     * @param string $type The type of the course (TP/TD/Exam).
-     * @return Course[] Returns an array of Course objects.
-     */
     public function findByType(string $type): array
     {
-        // Create a QueryBuilder instance
         $qb = $this->createQueryBuilder('c')
             ->where('c.type = :type')
             ->setParameter('type', $type);
 
-        // Get the query and execute it
         $query = $qb->getQuery();
 
-        // Return the result as an array of Course objects
         return $query->getResult();
     }
 
-//    /**
-//     * @return Content[] Returns an array of Content objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Content
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findCoursesByTitle(string $title): array
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->where('c.type = :type')
+            ->andWhere('c.title = :title')
+            ->setParameter('type', 'course')
+            ->setParameter('title', $title);
+    
+        $query = $qb->getQuery();
+    
+        return $query->getResult();
+    }
 }
+
