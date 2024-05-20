@@ -12,71 +12,123 @@
             background-color: #121212;
             color: #fff;
         }
-        .list-group-item {
-            background-color: #333;
-            border-color: #444;
-            color: #fff;
-        }
-        .list-group-item:hover {
-            background-color: #444;
-        }
-        .container {
-            max-width: 960px;
-            margin: 0 auto;
-        }
+
         .section-title {
             border-bottom: 2px solid #007bff;
             padding-bottom: 10px;
             margin-bottom: 30px;
             color: #007bff;
         }
+            .card-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+    
+            .card {
+                background-color: #383838;
+                color: white;
+                border: none;
+                border-radius: 20px;
+                margin-right: 20px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+                opacity: 0;
+                transform: translateY(20px);
+            }
+    
+            .card:hover {
+                transform: translateY(-5px) scale(1.03);
+                box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+            }
+    
+            .card img {
+                border-radius: 20px 20px 0 0;
+            }
+    
+            .card-body {
+                padding: 20px;
+            }
+    
+            .card-title {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+    
+            .card-text {
+                font-size: 16px;
+                line-height: 1.6;
+                margin-bottom: 20px;
+            }
+    
+            .btn {
+                border-radius: 20px;
+                padding: 10px 20px;
+                transition: all 0.3s ease;
+            }
+    
+            .btn-light {
+                background-color: #4c669f;
+                color: white;
+                border: 2px solid #4c669f;
+            }
+    
+            .btn-light:hover {
+                background-color: #3b5998;
+                border-color: #3b5998;
+            }
+    
+            .text-white {
+                color: white;
+            }
+    
+            .section-title {
+                font-size: 28px;
+                font-weight: bold;
+                margin-bottom: 30px;
+            }
+    
+            /* Animations */
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+    
+            .fade-in-up {
+                animation: fadeInUp 0.5s ease forwards;
+            }
     </style>
 {% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="row mt-5">
-        <div class="col-md-12">
-            <h1 class="text-center mb-5">Support Page</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <h2 class="section-title">Courses</h2>
-            <ul class="list-group"> 
-                {% for course in courses %}
-                    <li class="list-group-item">{{course.title}}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="col-md-4">
-            <h2 class="section-title">TDs</h2>
-            <ul class="list-group">
-                {% for TD in TDs %}
-                    <li class="list-group-item">{{TD.title}}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="col-md-4">
-            <h2 class="section-title">TPs</h2>
-            <ul class="list-group">
-                {% for TP in TPs %}
-                    <li class="list-group-item">{{TP.title}}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-    <div class="row mt-5">
-        <div class="col-md-12">
-            <h2 class="section-title">Exams</h2>
-            <ul class="list-group">
-                {% for EXAM in EXAMs %}
-                    <li class="list-group-item">{{EXAM.title}}</li>
-                {% endfor %}
-            </ul>
-        </div>
+
+
+<div class="col-lg-12">
+    <h2 class="text-white text-center section-title fade-in-up">Section</h2>
+    <div class="card-container d-flex flex-wrap justify-content-center">
+        {% for course in courses %}
+            <div class="card mr-3 mb-3 fade-in-up" style="width: 14rem;">
+                <img src="{{ asset('images/section-icon.png') }}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{ course.title }}</h5>
+                    <p class="card-text"> {{ course.description }}</p>
+                    <a href="#" class="btn btn-light">Explore</a>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 </div>
+
+
+
 {% endblock %}
 
 {% block javascripts %}

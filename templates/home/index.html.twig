@@ -223,51 +223,51 @@
         </div>
     </div>
                                         
-                                            <script>
-                                                document.addEventListener("DOMContentLoaded", function() {
-                                                    // Slide animation for professor and section sliders
-                                                    const professorSlider = document.querySelector('.professor-slider');
-                                                    const sectionSlider = document.querySelector('.section-slider');
-                                        
-                                                    function slideCards(container) {
-                                                        let cards = container.querySelectorAll('.card');
-                                                        cards.forEach((card, index) => {
-                                                            setTimeout(() => {
-                                                                card.classList.add('fade-in-up');
-                                                            }, index * 100);
-                                                        });
-                                                    }
-                                        
-                                                    if (professorSlider) {
-                                                        slideCards(professorSlider);
-                                                    }
-                                        
-                                                    if (sectionSlider) {
-                                                        slideCards(sectionSlider);
-                                                    }
-                                        
-                                                    // Smooth scroll functionality for custom scrollbar
-                                                    const customScrollbar = document.querySelectorAll('.custom-scrollbar');
-                                                    customScrollbar.forEach(scrollbar => {
-                                                        scrollbar.addEventListener('wheel', e => {
-                                                            e.preventDefault();
-                                                            const delta = e.deltaY || e.detail || e.wheelDelta;
-                                        
-                                                            scrollbar.scrollLeft += delta;
-                                                        });
-                                                    });
-                                        
-                                                    // Handle form submission
-                                                    const searchForm = document.querySelector('form');
-                                                    if (searchForm) {
-                                                        searchForm.addEventListener('submit', function(e) {
-                                                            e.preventDefault();
-                                                            const searchTerm = this.querySelector('input').value;
-                                                            // Perform search or other action
-                                                            console.log("Search term:", searchTerm);
-                                                        });
-                                                    }
-                                                });
-                                            </script>
-                                        {% endblock %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Slide animation for professor and section sliders
+            const professorSlider = document.querySelector('.professor-slider');
+            const sectionSlider = document.querySelector('.section-slider');
+
+            function slideCards(container) {
+                let cards = container.querySelectorAll('.card');
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('fade-in-up');
+                    }, index * 100);
+                });
+            }
+
+            if (professorSlider) {
+                slideCards(professorSlider);
+            }
+
+            if (sectionSlider) {
+                slideCards(sectionSlider);
+            }
+
+            // Smooth scroll functionality for custom scrollbar
+            const customScrollbar = document.querySelectorAll('.custom-scrollbar');
+            customScrollbar.forEach(scrollbar => {
+                scrollbar.addEventListener('wheel', e => {
+                    e.preventDefault();
+                    const delta = e.deltaY || e.detail || e.wheelDelta;
+
+                    scrollbar.scrollLeft += delta;
+                });
+            });
+
+            // Handle form submission
+            const searchForm = document.querySelector('form');
+            if (searchForm) {
+                searchForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const searchTerm = this.querySelector('input').value;
+                    // Perform search or other action
+                    console.log("Search term:", searchTerm);
+                });
+            }
+        });
+    </script>
+{% endblock %}
                                         

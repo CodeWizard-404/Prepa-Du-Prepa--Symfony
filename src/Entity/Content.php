@@ -8,16 +8,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-/**
- * @IgnoreAnnotation("ORM\Column")]
- */
 #[ORM\Entity(repositoryClass: ContentRepository::class)]
 #[Vich\Uploadable]
 class Content
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
     #[ORM\Column(length: 20)]
@@ -29,24 +26,17 @@ class Content
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(type: 'json', nullable: true)]
-    private ?array $document = null;
-
     #[ORM\ManyToOne(targetEntity: Course::class, inversedBy: 'contents')]
     private ?Course $course = null;
 
-
-    
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Vich\UploadableField(mapping="content_documents", fileNameProperty="documentPath")
-     */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $documentPath = null;
 
-    /**
-     * @Vich\UploadableField(mapping="content_documents", fileNameProperty="documentPath")
-     */
+    #[Vich\UploadableField(mapping: 'content_documents', fileNameProperty: 'documentPath')]
     private ?File $documentFile = null;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTimeInterface $updatedAt = null;
 
     public function getId(): ?int
     {
@@ -89,18 +79,6 @@ class Content
         return $this;
     }
 
-    public function getDocument(): ?array
-    {
-        return $this->document;
-    }
-
-    public function setDocument(?array $document): static
-    {
-        $this->document = $document;
-
-        return $this;
-    }
-
     public function getCourse(): ?Course
     {
         return $this->course;
@@ -112,5 +90,45 @@ class Content
 
         return $this;
     }
-}
 
+    public function getDocumentPath(): ?string
+    {
+        return $this->documentPath;
+    }
+
+    public function setDocumentPath(?string $documentPath): self
+    {
+        $this->documentPath = $documentPath;
+
+        return $this;
+    }
+
+    public function getDocumentFile(): ?File
+    {
+        return $this->documentFile;
+    }
+
+    public function setDocumentFile(?File $documentFile = null): self
+    {
+        $this->documentFile = $documentFile;
+
+        if ($documentFile) {
+            // Update updatedAt field to force Doctrine to trigger update
+            $this->updatedAt = new \DateTime('now');
+        }
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+}

@@ -13,10 +13,10 @@ class Course
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(length: 60)]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -25,14 +25,14 @@ class Course
     #[ORM\Column(length: 20)]
     private ?string $level = null;
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(length: 200)]
     private ?string $subject = null;
 
     #[ORM\ManyToOne(inversedBy: 'courses')]
     private ?User $id_user = null;
 
     #[ORM\OneToMany(mappedBy: 'course', targetEntity: Content::class)]
-    private Collection $contents;
+    private Collection|array $contents;
 
     public function __construct()
     {
@@ -107,11 +107,11 @@ class Course
     /**
      * @return Collection<int, Content>
      */
-    public function getContents(): Collection
+    public function getContents(): Collection|array
     {
         return $this->contents;
     }
-
+    
     public function addContent(Content $content): static
     {
         if (!$this->contents->contains($content)) {

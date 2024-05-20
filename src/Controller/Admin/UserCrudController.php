@@ -31,10 +31,7 @@ class UserCrudController extends AbstractCrudController
     {
         return [
             //IdField::new('id'),
-            TextField::new('username')
-                ->setRequired(true)
-                ->setLabel('Username'),
-            
+
             EmailField::new('email')
                 ->setRequired(true)
                 ->setLabel('Email')
@@ -46,6 +43,31 @@ class UserCrudController extends AbstractCrudController
                         'message' => 'Please enter a valid email address',
                     ]),
                 ]),
+
+            TextField::new('username')
+                ->setRequired(true)
+                ->setLabel('Username'),
+            
+            TextField::new('password')
+            ->setLabel('Password')
+            ->setFormType(PasswordType::class)
+            ->setFormTypeOptions([
+                'mapped' => true,
+                'required' => true,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a password',
+                    ]),
+                    new Length([
+                        'min' => 8,
+                        'minMessage' => 'Your password must be at least {{ limit }} characters long',
+                    ]),
+                    new PasswordRegex([
+                        'pattern' => '/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,}$/',
+                        'message' => 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.',
+                    ]),
+                ],
+            ]),
             
             TextField::new('telephone')
                 ->setLabel('Tel°')
@@ -75,26 +97,7 @@ class UserCrudController extends AbstractCrudController
                     ]),
                 ]),
             
-            TextField::new('password')
-            ->setLabel('Password')
-            ->setFormType(PasswordType::class)
-            ->setFormTypeOptions([
-                'mapped' => true,
-                'required' => true,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a password',
-                    ]),
-                    new Length([
-                        'min' => 8,
-                        'minMessage' => 'Your password must be at least {{ limit }} characters long',
-                    ]),
-                    new PasswordRegex([
-                        'pattern' => '/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,}$/',
-                        'message' => 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.',
-                    ]),
-                ],
-            ]),
+            
 
         ];
     }
