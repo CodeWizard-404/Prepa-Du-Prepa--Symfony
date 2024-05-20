@@ -13,13 +13,22 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use App\Form\CustomFileType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+
 
 class ContentCrudController extends AbstractCrudController
 {
+    #[Route(path: '/content', name: 'content')]
+    public function route(): Response
+    {
+        return $this->render('support/index.html.twig');
+    }
+
     public static function getEntityFqcn(): string
     {
         return Content::class;
     }
+    
 
     public function configureFields(string $pageName): iterable
     {
@@ -64,4 +73,6 @@ class ContentCrudController extends AbstractCrudController
             'form' => $form->createView(),
         ]);
     }
+
+
 }
