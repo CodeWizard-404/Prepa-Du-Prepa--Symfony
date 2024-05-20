@@ -1,3 +1,152 @@
+{% extends "bundles/EasyAdminBundle/page/content.html.twig" %}
 
-{% extends "bundles/EasyAdminBundle/page/content.html.twig"%}
+{% block body_id 'dashboard' %}
 
+{% block content_title %}
+    <h1 class="dashboard-title">Welcome to the Admin Dashboard</h1>
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="info-card info-card-primary">
+                <div class="info-card-content">
+                    <span class="info-card-title">Total Users</span>
+                    <span class="info-card-value">{{ usersCount }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="info-card info-card-success">
+                <div class="info-card-content">
+                    <span class="info-card-title">Total Courses</span>
+                    <span class="info-card-value">{{ coursesCount }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="info-card info-card-danger">
+                <div class="info-card-content">
+                    <span class="info-card-title">Total Content</span>
+                    <span class="info-card-value">{{ contentCount }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="info-card info-card-warning">
+                <div class="info-card-content">
+                    <span class="info-card-title">Pending Requests</span>
+                    <span class="info-card-value">{{ pendingRequestsCount }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">User Distribution</h5>
+                    <ul>
+                        <li>Admins: {{ adminCount }}</li>
+                        <li>Professors: {{ professorCount }}</li>
+                        <li>Students: {{ studentCount }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Course Enrollment</h5>
+                    <ul>
+                        {% for course, count in courseEnrollment %}
+                            <li>{{ course }}: {{ count }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Latest Users</h5>
+                    <ul class="latest-list">
+                        {% for user in latestUsers %}
+                            <li>{{ user }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Most Popular Courses</h5>
+                    <ul class="popular-courses-list">
+                        {% for course in popularCourses %}
+                            <li>{{ course }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .dashboard-title {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .info-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+        .info-card-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .info-card-title {
+            font-size: 18px;
+            color: #666;
+        }
+        .info-card-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        .chart-container {
+            height: 300px;
+        }
+        .latest-list,
+        .popular-courses-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .latest-list li,
+        .popular-courses-list li {
+            margin-bottom: 10px;
+            color: #666;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- Your custom JavaScript can go here if needed -->
+{% endblock %}

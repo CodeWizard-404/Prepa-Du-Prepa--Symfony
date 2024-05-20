@@ -17,6 +17,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Vich\UploaderBundle\Form\Type\VichFileType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+
 
 class ContentCrudController extends AbstractCrudController
 {
@@ -96,6 +98,13 @@ class ContentCrudController extends AbstractCrudController
             'content' => $content,
             'form' => $form->createView(),
         ]);
+    }
+
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setPaginatorPageSize(50);
     }
 
     

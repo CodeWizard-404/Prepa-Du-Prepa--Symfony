@@ -10,8 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
-
-
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 
 class CourseCrudController extends AbstractCrudController
 {
@@ -33,5 +32,11 @@ class CourseCrudController extends AbstractCrudController
             CollectionField::new('subjects')->setLabel('Subjects'),
 
         ];
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setPaginatorPageSize(50); 
     }
 }
