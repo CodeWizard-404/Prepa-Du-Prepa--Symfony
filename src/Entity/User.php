@@ -77,6 +77,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return array_unique($roles);
     }
+    
 
     public function setRoles(array $roles): static
     {
@@ -111,11 +112,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->password;
     }
 
-    public function setPassword(string $password): static
+    public function setPassword(string $password): void
     {
-        $this->password = $password;
-
-        return $this;
+        $this->password = password_hash($password, PASSWORD_ARGON2ID);
     }
 
     /**
