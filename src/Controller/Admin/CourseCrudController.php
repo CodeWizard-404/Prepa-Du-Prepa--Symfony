@@ -9,6 +9,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
+
 
 
 class CourseCrudController extends AbstractCrudController
@@ -22,14 +24,14 @@ class CourseCrudController extends AbstractCrudController
     {
         return [
             TextField::new('title'),
-            TextField::new('subject'),
             TextEditorField::new('description'),
             ChoiceField::new('level')->setChoices([
                 '1ère Année' => '1ère Année',
                 '2ème Année' => '2ème Année',
             ]),
             AssociationField::new('id_user')->setLabel('User'),
-            
+            CollectionField::new('subjects')->setLabel('Subjects'),
+
         ];
     }
 }

@@ -42,6 +42,15 @@ class ContentCrudController extends AbstractCrudController
     {
         return [
             // IdField::new('id'),
+
+            AssociationField::new('course')
+            ->setCrudController(CourseCrudController::class)
+            ->setRequired(true),
+
+            /*AssociationField::new('course.subjects')
+            ->setCrudController(CourseCrudController::class)
+            ->setRequired(true),*/
+
             ChoiceField::new('type')
                 ->setChoices([
                     'Cours' => 'Cours',
@@ -50,17 +59,18 @@ class ContentCrudController extends AbstractCrudController
                     'EXAM' => 'EXAM',
                 ]),
             TextField::new('title'),
+
             TextEditorField::new('description'),
+
             Field::new('documentFile')
                 ->setFormType(VichFileType::class)
                 ->setLabel('Document')
                 ->onlyOnForms(),
+
             TextField::new('documentPath')
                 ->setLabel('Document Path')
                 ->onlyOnIndex(),
-            AssociationField::new('course')
-                ->setCrudController(CourseCrudController::class)
-                ->setRequired(true),
+
         ];
     }
 
