@@ -70,7 +70,7 @@
         {% endif %}
         <script>window.location.href = '{{ path(redirectRoute) }}';</script>
     {% else %}
-        <form method="post" class="form-signin">
+        <form method="post" class="form-signin" style="margin-top:30px">
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
