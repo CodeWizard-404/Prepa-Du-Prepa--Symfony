@@ -18,6 +18,7 @@
 - Composer
 - MySQL Database
 
+
 ## Installation
 
 1. Clone the repository:
@@ -58,14 +59,14 @@
 Here are some screenshots of the platform:
 
 1. **Home Page**  
-   ![Home Page Screenshot](readmFiles\home.png)
+   ![Home Page Screenshot](readmFiles/home.png)
 
 2. **Authentification**  
-   ![User Dashboard Screenshot](readmFiles\auth.png)
+   ![User Dashboard Screenshot](readmFiles/auth.png)
 
 3. **Sections Page**  
-   ![Resource Page Screenshot](readmFiles\sections.png)
-   ![Resource Page Screenshot](readmFiles\sections1.png)
+   ![Resource Page Screenshot](readmFiles/sections.png)
+   ![Resource Page Screenshot](readmFiles/sections1.png)
 ---
 ## Usage
 
